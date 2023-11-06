@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required : true,
     },
+    avatar: {
+        type:String,
+        default:"https://profileme.app/wp-content/uploads/2021/01/cropped-ProfileMe-06.jpg"
+    }
 }, {timestamps: true});
 
 const User = mongoose.model("User", userSchema);
