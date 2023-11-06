@@ -24,7 +24,7 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success === true) {
+      if (data.success === false) {
         setErr(data.message);
         setLoading(false);
         return;

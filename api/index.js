@@ -2,7 +2,7 @@ import express  from "express";
 import mongoose from "mongoose";
 import connectDB from "./config/dbConfig.js";
 import dotenv from "dotenv";
-import signup from "./routes/auth.route.js";
+import auth from "./routes/auth.route.js";
 
 dotenv.config();
 const app = express();
@@ -12,7 +12,7 @@ connectDB();
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use("/api/auth", signup);
+app.use("/api/auth", auth);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
