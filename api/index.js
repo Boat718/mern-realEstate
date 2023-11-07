@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import connectDB from "./config/dbConfig.js";
 import dotenv from "dotenv";
 import auth from "./routes/auth.route.js";
+import user from "./routes/user.route.js"
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
@@ -12,7 +14,11 @@ connectDB();
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+
+app.use(cookieParser());
+
 app.use("/api/auth", auth);
+app.use("/api/user", user);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
