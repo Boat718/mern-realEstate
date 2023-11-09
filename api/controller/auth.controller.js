@@ -47,7 +47,7 @@ export const signin = async (req, res, next) => {
 
 export const google = async(req, res, next) => {
     try {
-        const user = await User.findOne({email: req.body.email});
+        const user = await User.findOne({googleUUID: req.body.uuid});
         if(user){
             console.log(user)
             generatedTokenAndRes(user, res);
@@ -59,12 +59,24 @@ export const google = async(req, res, next) => {
                 username: newUsername,
                 email: req.body.email,
                 password: hashedPassword,
-                avatar: req.body.photo
+                avatar: req.body.photo,
+                googleUUID: req.body.uuid
             })
             await newUser.save();
-            generatedTokenAndRes(newUser, res)
+            generatedTokenAndRes(newUser, res);
         }
     } catch (error) {
-        next(error)
+        next(error);
+    }
+}
+
+export const signout = async (req, res, next) => {
+    try {
+        res.clearCookie('access_token')
+        .status(200)
+        .json('User has been logged out!!');
+        
+    } catch (error) {
+        next(error);
     }
 }

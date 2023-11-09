@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type:String,
         default:"https://profileme.app/wp-content/uploads/2021/01/cropped-ProfileMe-06.jpg"
+    },
+    googleUUID: {
+        type: String,
+        unique : true,
     }
 }, {timestamps: true});
 
