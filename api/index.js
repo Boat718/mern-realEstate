@@ -2,8 +2,9 @@ import express  from "express";
 import mongoose from "mongoose";
 import connectDB from "./config/dbConfig.js";
 import dotenv from "dotenv";
-import auth from "./routes/auth.route.js";
-import user from "./routes/user.route.js"
+import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js"
+import listingRouter from "./routes/listing.route.js"
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -17,8 +18,9 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.use("/api/auth", auth);
-app.use("/api/user", user);
+app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
+app.use("/api/listing", listingRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
