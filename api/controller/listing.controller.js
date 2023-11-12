@@ -79,7 +79,7 @@ export const getListings = async(req, res, next) => {
             parking = {$in:[false, true]};
         }
 
-        if(type === undefined || type === "false") {
+        if(type === undefined || type === "all") {
             type = {$in:['sale', 'rent']};
         }
         
